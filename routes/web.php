@@ -5,6 +5,7 @@ use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\BroadcastController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use App\Livewire\Coba;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,3 +38,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('broadcast', [BroadcastController::class, 'index'])->name('broadcast.index');
     Route::post('broadcast/message', [BroadcastController::class, 'sendMessage'])->name('broadcast.message')->withoutMiddleware(VerifyCsrfToken::class);
+
+
+    Route::get('coba', Coba::class)->withoutMiddleware(VerifyCsrfToken::class); 
+    Route::get('home', function () {
+        return view('home');
+    })->name('home.view');
